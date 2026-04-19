@@ -22,6 +22,8 @@
     "astro-icon": "^0.8.1",
     "astro-navbar": "^2.3.0",
     "astro-seo": "^0.8.0",
+    "marked": "^18.0.2",
+    "notion-to-md": "^3.1.9",
     "sharp": "^0.33.0",
     "tailwindcss": "^3.3.5"
   },
