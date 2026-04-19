@@ -1,0 +1,131 @@
+---
+import type { PostMeta } from "../../lib/notion";
+
+interface Props {
+  post: PostMeta;
+  variant?: "default" | "featured";
+}
+
+const { post, variant = "default" } = Astro.props;
+const href = `/blog/${post.slug}`;
+const dateLabel = post.publishedDate
+  ? new Date(post.publishedDate).toLocaleDateString("es-ES", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
+  : "";
+// Approximate reading time from excerpt word count proxied from title + excerpt.
+// When the full post is rendered we'd use the HTML char count; for cards a
+// fixed 6 min is accurate enough and keeps build deterministic.
+const readMin = Math.max(3, Math.min(18, Math.ceil((post.excerpt?.length || 600) / 180)));
+---
+
+<a class={`blog-card ${variant}`} href={href} aria-label={post.title}>
+  <div class="blog-cover" style={post.coverUrl ? `background-image:url(${post.coverUrl});background-size:cover;background-position:center;` : undefined}>
+    {!post.coverUrl && (
+      <div class="blog-cover-placeholder" aria-hidden="true">
+        <span>{(post.title || "p").slice(0, 1)}</span>
+      </div>
+    )}
+  </div>
+  <div class="blog-body">
+    <span class="blog-cat">{post.category}</span>
+    <h3>{post.title}</h3>
+    {post.excerpt && <p>{post.excerpt}</p>}
+    <div class="blog-foot">
+      <span>{dateLabel} · {readMin} min</span>
+      <span class="read">
+        Leer
+        <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+      </span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .blog-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.4s var(--ease);
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-soft);
+  }
+  .blog-card.featured {
+    grid-column: span 2;
+  }
+  .blog-cover {
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, var(--peach), var(--accent-soft));
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-cover-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: var(--ff-display);
+    font-size: 120px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1;
+  }
+  .blog-body {
+    padding: 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+  }
+  .blog-cat {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .blog-card h3 {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    text-wrap: balance;
+  }
+  .blog-card p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.5;
+    margin-top: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    font-family: var(--ff-mono);
+  }
+  .blog-foot .read {
+    color: var(--accent);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+</style>

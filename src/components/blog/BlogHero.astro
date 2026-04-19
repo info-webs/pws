@@ -1,0 +1,81 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  accent?: string;
+  lead?: string;
+}
+const { eyebrow = "Blog", title, accent = "SEO", lead } = Astro.props;
+---
+
+<section class="blog-hero">
+  <div class="blog-hero-bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+  </div>
+  <div class="container blog-hero-inner">
+    <span class="h-eyebrow">{eyebrow}</span>
+    <h1>
+      {title.split(accent).map((chunk, i, arr) => (
+        <>
+          {chunk}
+          {i < arr.length - 1 && <em class="accent">{accent}</em>}
+        </>
+      ))}
+    </h1>
+    {lead && <p class="lead">{lead}</p>}
+  </div>
+</section>
+
+<style>
+  .blog-hero {
+    padding-top: 140px;
+    padding-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+  .blob.b1 {
+    width: 420px; height: 420px;
+    top: -120px; right: -80px;
+    background: radial-gradient(circle, var(--peach) 0%, transparent 70%);
+    opacity: 0.6;
+  }
+  .blob.b2 {
+    width: 320px; height: 320px;
+    top: 120px; left: -80px;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    opacity: 0.25;
+  }
+  .blog-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+  }
+  .blog-hero h1 {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: clamp(44px, 6vw, 80px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin-top: 18px;
+    text-wrap: balance;
+  }
+  .blog-hero h1 .accent {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .blog-hero .lead {
+    margin-top: 22px;
+    color: var(--text-2);
+    font-size: clamp(16px, 1.2vw, 19px);
+    line-height: 1.55;
+    max-width: 620px;
+    text-wrap: pretty;
+  }
+</style>
