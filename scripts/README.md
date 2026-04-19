@@ -1,6 +1,64 @@
 # scripts
 
-## `migrate-wp-to-notion.mjs`
+## `import-wp-blog-to-notion.mjs` (current)
+
+Tailored to the posicionamiento-web-salamanca.com → Notion migration that
+was running as of 2026-04. Imports WP posts starting at a configurable
+`OFFSET` (default 30 — the first 30 were imported in a prior run) and
+stops when WP runs out of posts. Idempotent on `WP ID`.
+
+### Target Notion database schema
+
+| Property           | Type                                    |
+| ------------------ | --------------------------------------- |
+| `Title`            | Title                                   |
+| `Slug`             | Rich text                               |
+| `Status`           | Select (includes `Published`)           |
+| `Category`         | Select (SEO, Marketing 2.0, Redes Sociales, Noticias Corporativas, Sin categoría) |
+| `Excerpt`          | Rich text                               |
+| `Published Date`   | Date                                    |
+| `Updated Date`     | Date                                    |
+| `Original URL`     | URL                                     |
+| `SEO Title`        | Rich text                               |
+| `SEO Description`  | Rich text                               |
+| `WP ID`            | Number                                  |
+
+### Usage
+
+```bash
+# Dry run first (no writes):
+WP_BASE_URL=https://www.posicionamiento-web-salamanca.com \
+WP_USER=jesus \
+WP_APP_PASSWORD='MjCP M610 gNXr 04Lb S0fH OeAi' \
+NOTION_API_KEY=ntn_xxx \
+NOTION_DS_ID=91c6ebb6-41c9-4e41-987b-e3a611ed67c3 \
+pnpm import:blog:dry --limit 5
+
+# Real run (imports 247 remaining posts):
+WP_BASE_URL=... WP_USER=jesus WP_APP_PASSWORD='...' \
+NOTION_API_KEY=ntn_xxx NOTION_DS_ID=91c6ebb6-... \
+pnpm import:blog --run
+```
+
+Flags:
+
+- `--dry-run` — default; lists what would be imported, no writes.
+- `--run` — actually create pages in Notion.
+- `--limit N` — only process N posts (after `OFFSET`).
+- `OFFSET=N` (env) — skip the first N posts. Default 30.
+
+At startup the script probes whether the UUID is a `database_id` or a
+`data_source_id` on this Notion API version (2022-06-28) and picks the
+right parent shape for all subsequent calls.
+
+Category mapping (WP slug → Notion option): `seo → SEO`,
+`marketing-2-0 → Marketing 2.0`, `redes-sociales → Redes Sociales`,
+`noticias-corporativas → Noticias Corporativas`, anything else →
+`Sin categoría`.
+
+Throttle: 350 ms between writes (~2.8 req/s; under Notion's 3 req/s cap).
+
+## `migrate-wp-to-notion.mjs` (initial spec — kept for reference)
 
 One-shot migration: pulls every post from the WordPress REST API of
 `posicionamiento-web-salamanca.com` and creates a matching page in a Notion
