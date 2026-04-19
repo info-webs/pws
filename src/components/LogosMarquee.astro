@@ -1,0 +1,90 @@
+---
+const items = [
+  { mark: "C", name: "Clínica Castaño", cls: "" },
+  { mark: "H", name: "Herrero Abogados", cls: "m2" },
+  { mark: "D", name: "Dental Salamanca", cls: "m3" },
+  { mark: "N", name: "Notaría del Tormes", cls: "m4" },
+  { mark: "V", name: "Vidal Odontología", cls: "m5" },
+  { mark: "M", name: "Muñoz & Asociados", cls: "" },
+  { mark: "F", name: "Fisioplus Salamanca", cls: "m2" },
+  { mark: "R", name: "Restaura Dental", cls: "m3" },
+];
+// duplicate for seamless marquee
+const track = [...items, ...items];
+---
+
+<section class="logos" aria-label="Clientes">
+  <div class="container">
+    <p class="logos-label">Confían en nosotros desde hace años</p>
+  </div>
+  <div class="logos-track">
+    {track.map((it) => (
+      <div class="logo-item">
+        <span class={`logo-mark ${it.cls}`}>{it.mark}</span>
+        <span>{it.name}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .logos {
+    padding-block: 60px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-soft);
+    overflow: hidden;
+  }
+  .logos-label {
+    text-align: center;
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-3);
+    margin-bottom: 32px;
+  }
+  .logos-track {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    animation: scrollLogos 38s linear infinite;
+    width: max-content;
+  }
+  .logos:hover .logos-track { animation-play-state: paused; }
+  @keyframes scrollLogos {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .logo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--text-2);
+    letter-spacing: -0.015em;
+    opacity: 0.65;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+  .logo-item:hover { opacity: 1; }
+  .logo-item .logo-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    display: grid;
+    place-items: center;
+    font-family: var(--ff-body);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .logo-item .logo-mark.m2 { background: var(--peach); border-color: var(--accent-soft); color: var(--accent-hover); }
+  .logo-item .logo-mark.m3 { background: var(--mint); border-color: transparent; color: #2F5B3C; }
+  .logo-item .logo-mark.m4 { background: var(--sky); border-color: transparent; color: #2F4E5B; }
+  .logo-item .logo-mark.m5 { background: var(--gold); border-color: transparent; color: #6B4A18; }
+</style>

@@ -1,0 +1,131 @@
+---
+---
+
+<section class="section section-tight" aria-labelledby="team-title">
+  <div class="container">
+    <div class="team-grid">
+      <div class="team-photo">
+        <div class="team-photo-inner">J</div>
+      </div>
+      <div class="team-card">
+        <span class="h-eyebrow">Quién está detrás</span>
+        <h3 id="team-title" style="margin-top:18px;">Jesús López</h3>
+        <div class="role">Consultor SEO · Salamanca</div>
+        <p>
+          18 años haciendo SEO. Empecé en 2007 optimizando webs de la calle Toro y hoy
+          lidero proyectos de servicios profesionales en toda España. Hablo claro,
+          trabajo con datos y me obsesiona que el cliente entienda qué estamos haciendo
+          y por qué.
+        </p>
+        <p>
+          Si contratas el servicio, hablas conmigo. No con un cuentas, no con un bot.
+          Con la persona que también escribe tu estrategia.
+        </p>
+        <div class="team-stats">
+          <div>
+            <div class="team-stat-num">+340<sup>proyectos</sup></div>
+            <div class="team-stat-lbl">desde 2007</div>
+          </div>
+          <div>
+            <div class="team-stat-num">18<sup>años</sup></div>
+            <div class="team-stat-lbl">en Salamanca</div>
+          </div>
+          <div>
+            <div class="team-stat-num">5.0<sup>★</sup></div>
+            <div class="team-stat-lbl">47 reseñas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 800px) { .team-grid { grid-template-columns: 1fr; } }
+  .team-photo {
+    aspect-ratio: 4/5;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(160deg, var(--peach) 0%, var(--accent-soft) 55%, var(--accent) 110%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .team-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(31, 30, 28, 0.15), transparent 50%);
+  }
+  .team-photo-inner {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: var(--ff-display);
+    font-size: 180px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1;
+    text-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+  }
+  .team-card { padding: 20px 0; }
+  .team-card h3 {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: clamp(36px, 4vw, 52px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .team-card .role {
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .team-card p {
+    font-size: 16.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    margin-bottom: 18px;
+    text-wrap: pretty;
+  }
+  .team-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .team-stat-num {
+    font-family: var(--ff-display);
+    font-size: 38px;
+    line-height: 1;
+    color: var(--text);
+  }
+  .team-stat-num sup {
+    font-size: 0.5em;
+    color: var(--accent);
+    top: -0.8em;
+    font-family: var(--ff-body);
+    font-weight: 500;
+  }
+  .team-stat-lbl {
+    font-size: 11.5px;
+    color: var(--text-3);
+    margin-top: 6px;
+    font-family: var(--ff-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+</style>

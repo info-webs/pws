@@ -1,0 +1,171 @@
+---
+const cases = [
+  {
+    sector: "Clínica dental",
+    badge: "6 meses",
+    title: "De invisible a Top 1 en ortodoncia invisible",
+    stats: [
+      { num: "+218", sign: "%", lbl: "tráfico orgánico" },
+      { num: "+31", sign: "", lbl: "keywords top 10" },
+    ],
+    desc: "Clínica familiar en Salamanca que recibía 2-3 contactos al mes por web. Hoy tienen agenda llena 5 semanas vista y 90% de nuevos pacientes dicen haber llegado por Google.",
+    client: "Dental Castaño",
+    time: "2024",
+  },
+  {
+    sector: "Despacho de abogados",
+    badge: "9 meses",
+    title: "Top 3 en 4 servicios competidos",
+    stats: [
+      { num: "+184", sign: "%", lbl: "conversión web" },
+      { num: "12→1", sign: "", lbl: "posición media" },
+    ],
+    desc: "Despacho especializado en herencias y familia. Reestructuramos arquitectura, creamos contenidos de intención transaccional y subimos autoridad con PR digital local.",
+    client: "Herrero Abogados",
+    time: "2023",
+  },
+  {
+    sector: "Fisioterapia",
+    badge: "4 meses",
+    title: "SEO local + Google Maps",
+    stats: [
+      { num: "+340", sign: "%", lbl: "llamadas mensuales" },
+      { num: "Top 3", sign: "", lbl: "Google Maps" },
+    ],
+    desc: "Centro con dos sedes en Salamanca. Optimización de fichas, gestión de reseñas y contenidos por barrio. Coste por lead bajó de 38€ (Ads) a 4€ (SEO).",
+    client: "Fisioplus Salamanca",
+    time: "2024",
+  },
+];
+---
+
+<section class="section" id="casos" aria-labelledby="cases-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="h-eyebrow">Casos reales</span>
+      <h2 id="cases-title">Resultados <em>medibles</em>, no capturas de pantalla.</h2>
+      <p>Clientes reales de Salamanca con números verificables. Pedimos permiso antes de publicar cualquier caso.</p>
+    </div>
+    <div class="cases-grid">
+      {cases.map((c) => (
+        <article class="case">
+          <div class="case-head">
+            <span class="case-sector">{c.sector}</span>
+            <span class="case-badge">{c.badge}</span>
+          </div>
+          <h3>{c.title}</h3>
+          <div class="case-stats">
+            {c.stats.map((s) => (
+              <div>
+                <div class="case-stat-num"><span class="sign">{s.sign && "+"}</span>{s.num}{s.sign && s.sign !== "+" && <span style="font-size:0.6em;color:var(--accent);">{s.sign}</span>}</div>
+                <div class="case-stat-lbl">{s.lbl}</div>
+              </div>
+            ))}
+          </div>
+          <p class="case-desc">{c.desc}</p>
+          <div class="case-foot">
+            <span class="case-client">{c.client}</span>
+            <span class="case-time">{c.time}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .case {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .case:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-soft);
+  }
+  .case-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  .case-sector {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+  }
+  .case-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--peach);
+    color: var(--accent-hover);
+    font-family: var(--ff-mono);
+    font-weight: 500;
+  }
+  .case h3 {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  .case-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+  }
+  .case-stat-num {
+    font-family: var(--ff-display);
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .case-stat-num .sign { color: var(--accent); }
+  .case-stat-lbl {
+    font-size: 11.5px;
+    color: var(--text-3);
+    margin-top: 6px;
+    font-family: var(--ff-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .case-desc {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.55;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .case-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .case-client { font-size: 13px; font-weight: 500; color: var(--text); }
+  .case-time { font-size: 12px; color: var(--text-3); font-family: var(--ff-mono); }
+  @media (max-width: 900px) { .cases-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .cases-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,184 @@
+---
+const plans = [
+  {
+    feat: false,
+    name: "SEO Local",
+    price: "390",
+    desc: "Para comercios, clínicas y despachos locales que quieren ser el primero en Salamanca.",
+    features: [
+      "Auditoría técnica inicial",
+      "Google Business Profile optimizado",
+      "5 contenidos locales /mes",
+      "Linkbuilding local",
+      "Reporte mensual + llamada",
+    ],
+    cta: "Solicitar propuesta",
+    href: "#contacto",
+  },
+  {
+    feat: true,
+    tag: "Más popular",
+    name: "SEO Crecimiento",
+    price: "890",
+    desc: "Para negocios que quieren escalar posiciones y facturación a nivel provincial.",
+    features: [
+      "Todo lo de SEO Local",
+      "Estrategia de contenidos 360",
+      "12 contenidos /mes",
+      "Linkbuilding sectorial",
+      "Optimización CRO",
+      "Consultoría mensual 1:1",
+    ],
+    cta: "Quiero crecer",
+    href: "#contacto",
+  },
+  {
+    feat: false,
+    name: "SEO Nacional",
+    price: "1.890",
+    desc: "Para ecommerce, SaaS y proyectos que compiten a nivel nacional o en nicho.",
+    features: [
+      "Todo lo anterior",
+      "Estrategia SEO a medida",
+      "Contenidos ilimitados",
+      "Linkbuilding premium",
+      "SEO internacional si aplica",
+      "Auditorías trimestrales",
+    ],
+    cta: "Hablemos",
+    href: "#contacto",
+  },
+];
+---
+
+<section class="section" id="precios" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="h-eyebrow">Precios</span>
+      <h2 id="pricing-title">Planes claros, <em>sin permanencia</em>.</h2>
+      <p>Todos los planes incluyen auditoría técnica, contenidos y reporte mensual. Sin contrato blindado: si no ves resultados en 6 meses, última mensualidad de vuelta.</p>
+    </div>
+    <div class="pricing-grid">
+      {plans.map((p) => (
+        <div class={`plan${p.feat ? " feat" : ""}`}>
+          {p.feat && <div class="plan-tag">{p.tag}</div>}
+          <div class="plan-name">{p.name}</div>
+          <div class="plan-price">
+            <span class="curr">€</span>{p.price}<span class="per">/ mes</span>
+          </div>
+          <p class="plan-tag-desc">{p.desc}</p>
+          <ul class="plan-features">
+            {p.features.map((f) => (
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a href={p.href} class={`btn ${p.feat ? "btn-primary" : "btn-ghost"}`}>
+            {p.cta}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+  .plan {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    transition: all 0.4s var(--ease);
+    position: relative;
+  }
+  .plan.feat {
+    border-color: var(--accent);
+    background: linear-gradient(170deg, var(--surface-warm) 0%, var(--bg-card) 40%);
+    box-shadow: var(--shadow-accent);
+    transform: scale(1.02);
+  }
+  .plan-tag {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-family: var(--ff-mono);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  .plan-name {
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+  }
+  .plan-price {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--text);
+  }
+  .plan-price .curr {
+    font-size: 26px;
+    color: var(--text-3);
+    vertical-align: super;
+    margin-right: 4px;
+    top: -12px;
+    position: relative;
+  }
+  .plan-price .per {
+    font-family: var(--ff-body);
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--text-3);
+    margin-left: 6px;
+  }
+  .plan-tag-desc {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.5;
+    margin-top: -12px;
+  }
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
+  .plan-features li :global(svg) { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+  .plan :global(.btn) { justify-content: center; width: 100%; margin-top: auto; }
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .plan.feat { transform: none; }
+  }
+</style>

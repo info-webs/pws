@@ -1,0 +1,75 @@
+---
+---
+
+<section class="section section-tight" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="cta-banner">
+      <h2 id="cta-title">¿Listo para <em>aparecer primero</em>?</h2>
+      <p>
+        Una llamada de 30 minutos, sin compromiso. Te decimos si podemos ayudarte
+        y, si no, a quién acudir. Honestidad por delante.
+      </p>
+      <div class="cta-row">
+        <a href="#contacto" class="btn btn-primary">
+          Solicitar propuesta
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="tel:+34618015995" class="btn btn-ghost">
+          Llamar · 618 015 995
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-banner {
+    background: linear-gradient(135deg, var(--peach) 0%, var(--accent-soft) 100%);
+    border-radius: var(--radius-xl);
+    padding: clamp(44px, 6vw, 72px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 40% 60% at 50% 120%, rgba(255, 255, 255, 0.6), transparent);
+    pointer-events: none;
+  }
+  .cta-banner h2 {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: clamp(36px, 4.5vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: #3D2818;
+    text-wrap: balance;
+    position: relative;
+  }
+  .cta-banner h2 em { color: var(--accent-hover); font-style: italic; }
+  .cta-banner p {
+    color: #5C3D25;
+    font-size: 17px;
+    line-height: 1.5;
+    max-width: 540px;
+    margin: 0 auto 32px;
+    position: relative;
+    text-wrap: pretty;
+  }
+  .cta-banner .cta-row {
+    display: inline-flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+  }
+  .cta-banner :global(.btn-ghost) {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(61, 40, 24, 0.25);
+    color: #3D2818;
+  }
+  .cta-banner :global(.btn-ghost:hover) { background: rgba(255, 255, 255, 0.6); }
+</style>

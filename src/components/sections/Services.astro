@@ -1,0 +1,148 @@
+---
+const services = [
+  {
+    cls: "feat",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>`,
+    title: "Posicionamiento SEO",
+    body: "Que tu negocio salga primero en Google cuando alguien busca lo que ofreces en Salamanca. SEO técnico, contenidos, enlaces y Google Maps en el mismo equipo.",
+    list: ["Auditoría técnica", "Keyword research", "Linkbuilding blanco", "Google Business Profile"],
+  },
+  {
+    cls: "",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>`,
+    title: "Diseño web que convierte",
+    body: "Webs rápidas, pensadas para convertir visitas en clientes, no para ganar premios. Diseño, copy y SEO desde el día uno.",
+    list: ["Astro / WordPress", "Core Web Vitals", "Copywriting incluido"],
+  },
+  {
+    cls: "",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5z"></path><path d="m2 17 10 5 10-5M2 12l10 5 10-5"></path></svg>`,
+    title: "SEO local + Google Maps",
+    body: "Top 3 en el mapa de Salamanca. La palanca más rentable para clínicas, despachos y comercios que dependen del cliente cercano.",
+    list: ["Ficha optimizada", "Reseñas gestionadas", "Citations locales"],
+  },
+  {
+    cls: "wide",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>`,
+    title: "Auditoría SEO exhaustiva",
+    body: "Radiografía completa de tu web y tu sector. Te decimos qué frena tus posiciones, qué oportunidades están abandonadas y por dónde empezar. Entregable accionable, no un PDF que acaba en el cajón.",
+    list: ["Revisión técnica full", "Análisis de competencia", "Plan 90 días priorizado", "Sesión de presentación"],
+  },
+  {
+    cls: "",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20V10M18 20V4M6 20v-6"></path></svg>`,
+    title: "ASO — App Store SEO",
+    body: "Si tu negocio es una app, te posicionamos en App Store y Google Play. Nicho pequeño y muy rentable.",
+    list: ["Keywords en store", "A/B creatividades", "Reviews"],
+  },
+];
+---
+
+<section class="section" id="servicios" aria-labelledby="servicios-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="h-eyebrow">Servicios</span>
+      <h2 id="servicios-title">Todo lo que mueve la aguja, <em>bajo el mismo techo</em>.</h2>
+      <p>Diseño, SEO, contenidos y desarrollo. Sin subcontratas en cadena. Un equipo pequeño, cercano y obsesionado con los resultados.</p>
+    </div>
+    <div class="services-grid">
+      {services.map((s) => (
+        <article class={`service-card ${s.cls}`}>
+          <div class="service-ic" set:html={s.icon}></div>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+          <ul class="service-list">
+            {s.list.map((li) => <li>{li}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 14px;
+  }
+  .service-card {
+    grid-column: span 4;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s var(--ease);
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card.feat {
+    grid-column: span 6;
+    background: linear-gradient(140deg, var(--surface-warm) 0%, var(--bg-card) 55%);
+  }
+  .service-card.wide { grid-column: span 8; }
+  .service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-soft);
+  }
+  .service-ic {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: var(--peach);
+    color: var(--accent-hover);
+    margin-bottom: 22px;
+  }
+  .service-ic :global(svg) { width: 20px; height: 20px; }
+  .service-card h3 {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .service-card p {
+    color: var(--text-2);
+    font-size: 14.5px;
+    line-height: 1.5;
+    text-wrap: pretty;
+    margin-bottom: 20px;
+  }
+  .service-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .service-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-2);
+    font-family: var(--ff-mono);
+  }
+  .service-list li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  @media (max-width: 980px) {
+    .service-card, .service-card.feat, .service-card.wide { grid-column: span 6; }
+  }
+  @media (max-width: 640px) {
+    .service-card, .service-card.feat, .service-card.wide { grid-column: span 12; }
+  }
+</style>

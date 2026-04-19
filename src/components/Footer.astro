@@ -1,0 +1,124 @@
+---
+const year = new Date().getFullYear();
+const cols = [
+  {
+    title: "Servicios",
+    links: [
+      { href: "/servicios/posicionamiento-web", label: "Posicionamiento web" },
+      { href: "/servicios/diseno-web", label: "Diseño web" },
+      { href: "/servicios/posicionamiento-aso", label: "Posicionamiento ASO" },
+      { href: "/servicios/hosting-seo", label: "Hosting SEO" },
+      { href: "/servicios/auditoria-seo", label: "Auditoría SEO" },
+    ],
+  },
+  {
+    title: "Sectores",
+    links: [
+      { href: "/seo-clinicas-dentales", label: "Clínicas dentales" },
+      { href: "/seo-abogados", label: "Abogados" },
+      { href: "/seo-notarias", label: "Notarías" },
+      { href: "/seo-fisioterapia", label: "Fisioterapia" },
+      { href: "/seo-comercio-local", label: "Comercio local" },
+    ],
+  },
+  {
+    title: "Recursos",
+    links: [
+      { href: "/blog", label: "Blog" },
+      { href: "/casos-de-exito", label: "Casos de éxito" },
+      { href: "/contacto", label: "Contacto" },
+      { href: "/aviso-legal", label: "Aviso legal" },
+      { href: "/privacidad", label: "Privacidad" },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="nav-brand" href="/" style="font-size:16px;">
+          <span class="nav-logo" aria-hidden="true">p</span>
+          <span>Posicionamiento&nbsp;Web&nbsp;Salamanca</span>
+        </a>
+        <p>
+          Agencia SEO en Salamanca con 18 años ayudando a servicios profesionales
+          a aparecer primeros en Google.
+        </p>
+      </div>
+      {cols.map((col) => (
+        <div>
+          <h5>{col.title}</h5>
+          <ul>
+            {col.links.map((l) => (
+              <li><a href={l.href}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="footer-bottom">
+      <span>© {year} Posicionamiento Web Salamanca. Todos los derechos reservados.</span>
+      <span><a href="/aviso-legal">Aviso legal</a> · <a href="/privacidad">Privacidad</a> · <a href="/cookies">Cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 56px 0 36px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 800px) {
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  .footer-brand p {
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-top: 16px;
+    max-width: 280px;
+  }
+  .footer h5 {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .footer ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .footer ul a { color: var(--text-2); font-size: 14px; transition: color 0.2s; }
+  .footer ul a:hover { color: var(--accent); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--text-3);
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .footer-bottom a:hover { color: var(--accent); }
+  .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.015em; }
+  .nav-logo {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: radial-gradient(circle at 30% 30%, var(--accent-soft), var(--accent));
+    display: grid; place-items: center;
+    color: #fff;
+    font-family: var(--ff-display);
+    font-size: 18px;
+    line-height: 1;
+  }
+</style>

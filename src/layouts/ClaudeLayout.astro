@@ -1,0 +1,112 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Posicionamiento Web Salamanca — Agencia SEO con 18 años de experiencia",
+  description = "Agencia SEO en Salamanca especializada en posicionamiento web para abogados, clínicas dentales y servicios profesionales. 18 años consiguiendo resultados medibles. Solicita tu propuesta personalizada.",
+  canonical = "https://posicionamiento-web-salamanca.com/",
+  ogImage = "/opengraph.jpg",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="posicionamiento web Salamanca, agencia SEO Salamanca, consultor SEO Salamanca, SEO local Salamanca, SEO dentistas, SEO abogados" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="author" content="Jesús López SEO" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:site_name" content="Posicionamiento Web Salamanca" />
+  <meta property="og:image" content={ogImage} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://posicionamiento-web-salamanca.com/#organization",
+    "name": "Posicionamiento Web Salamanca",
+    "alternateName": "Jesús López SEO",
+    "url": "https://posicionamiento-web-salamanca.com/",
+    "description": "Agencia SEO en Salamanca especializada en posicionamiento web para servicios profesionales con 18 años de experiencia.",
+    "telephone": "+34618015995",
+    "email": "jesus@jesuslopezseo.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Salamanca",
+      "addressRegion": "Castilla y León",
+      "addressCountry": "ES"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Salamanca" },
+      { "@type": "Country", "name": "España" }
+    ],
+    "priceRange": "€€",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "47" },
+    "sameAs": ["https://www.linkedin.com/in/jesuslopezseo/"]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tarda en verse resultados el posicionamiento SEO?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Los primeros movimientos se ven en 6-8 semanas. Los resultados sólidos (primeras posiciones, tráfico estable) entre 4 y 7 meses dependiendo de la competencia del sector en Salamanca." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Trabajáis con negocios fuera de Salamanca?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Aunque somos expertos en SEO local de Salamanca, trabajamos con clientes en toda España y sectores nicho a nivel nacional." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Hay permanencia en los servicios SEO?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Trabajamos mes a mes. Pedimos un compromiso mínimo informal de 6 meses porque antes no hay tiempo de ver resultados, pero no hay contrato blindado." }
+      }
+    ]
+  })} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <slot />
+
+  <script is:inline>
+    // Theme: read saved preference or default to light
+    (function () {
+      try {
+        const saved = localStorage.getItem("pws-theme");
+        if (saved === "dark") document.documentElement.dataset.theme = "dark";
+      } catch (_) {}
+    })();
+  </script>
+</body>
+</html>
