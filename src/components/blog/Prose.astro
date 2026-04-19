@@ -1,0 +1,128 @@
+---
+interface Props {
+  html: string;
+}
+const { html } = Astro.props;
+---
+
+<article class="prose" set:html={html} />
+
+<style>
+  .prose {
+    font-family: var(--ff-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .prose :global(p) {
+    margin: 1.1em 0;
+    text-wrap: pretty;
+  }
+  .prose :global(h2) {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 2em 0 0.6em;
+    text-wrap: balance;
+  }
+  .prose :global(h3) {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: clamp(22px, 2.3vw, 30px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 1.7em 0 0.5em;
+  }
+  .prose :global(h4) {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 1.4em 0 0.4em;
+  }
+  .prose :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .prose :global(a:hover) {
+    color: var(--accent-hover);
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.4em;
+    margin: 1em 0;
+  }
+  .prose :global(li) {
+    margin: 0.3em 0;
+  }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+    margin: 1.4em 0;
+    color: var(--text-2);
+    font-style: italic;
+    font-family: var(--ff-display);
+    font-size: 1.1em;
+    line-height: 1.4;
+  }
+  .prose :global(figure) {
+    margin: 2em 0;
+  }
+  .prose :global(img) {
+    border-radius: var(--radius);
+    width: 100%;
+    height: auto;
+  }
+  .prose :global(figcaption) {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-3);
+    text-align: center;
+    font-family: var(--ff-mono);
+  }
+  .prose :global(code) {
+    background: var(--bg-soft);
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: var(--ff-mono);
+    font-size: 0.88em;
+    color: var(--accent-hover);
+  }
+  .prose :global(pre) {
+    background: var(--text);
+    color: #F5F1E8;
+    padding: 20px 22px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    margin: 1.5em 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .prose :global(pre code) {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+  }
+  .prose :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5em 0;
+  }
+  .prose :global(aside.callout) {
+    background: var(--surface-warm);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: var(--radius);
+    margin: 1.5em 0;
+    color: var(--text-2);
+  }
+  .prose :global(strong) { font-weight: 600; color: var(--text); }
+  .prose :global(u) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+</style>

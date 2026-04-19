@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 
-Sitemap: https://bsaas-astro.web3templates.com//sitemap-index.xml
+Sitemap: https://www.posicionamiento-web-salamanca.com/sitemap.xml

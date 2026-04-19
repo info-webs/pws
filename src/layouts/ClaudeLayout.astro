@@ -6,6 +6,7 @@ export interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  includeFaq?: boolean;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   description = "Agencia SEO en Salamanca especializada en posicionamiento web para abogados, clínicas dentales y servicios profesionales. 18 años consiguiendo resultados medibles. Solicita tu propuesta personalizada.",
   canonical = "https://posicionamiento-web-salamanca.com/",
   ogImage = "/opengraph.jpg",
+  includeFaq = true,
 } = Astro.props;
 ---
 
@@ -65,7 +67,7 @@ const {
     "sameAs": ["https://www.linkedin.com/in/jesuslopezseo/"]
   })} />
 
-  <script type="application/ld+json" set:html={JSON.stringify({
+  {includeFaq && <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
@@ -85,7 +87,7 @@ const {
         "acceptedAnswer": { "@type": "Answer", "text": "No. Trabajamos mes a mes. Pedimos un compromiso mínimo informal de 6 meses porque antes no hay tiempo de ver resultados, pero no hay contrato blindado." }
       }
     ]
-  })} />
+  })} />}
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -95,6 +97,8 @@ const {
   />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <slot name="head" />
 </head>
 <body>
   <slot />

@@ -1,0 +1,71 @@
+---
+interface Props {
+  prevUrl?: string | null;
+  nextUrl?: string | null;
+  current: number;
+  total: number;
+}
+const { prevUrl, nextUrl, current, total } = Astro.props;
+---
+
+{total > 1 && (
+  <nav class="pagination" aria-label="Paginación">
+    <a
+      class={`pag-btn ${!prevUrl ? "is-disabled" : ""}`}
+      href={prevUrl || "#"}
+      aria-disabled={!prevUrl}
+      aria-label="Página anterior"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+      Anterior
+    </a>
+    <span class="pag-count">Página {current} de {total}</span>
+    <a
+      class={`pag-btn ${!nextUrl ? "is-disabled" : ""}`}
+      href={nextUrl || "#"}
+      aria-disabled={!nextUrl}
+      aria-label="Página siguiente"
+    >
+      Siguiente
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+    </a>
+  </nav>
+)}
+
+<style>
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding-top: 56px;
+  }
+  .pag-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    transition: all 0.25s var(--ease);
+    background: var(--bg-card);
+  }
+  .pag-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .pag-btn.is-disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .pag-btn svg { width: 14px; height: 14px; }
+  .pag-count {
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+  }
+</style>

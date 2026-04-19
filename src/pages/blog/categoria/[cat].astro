@@ -1,0 +1,104 @@
+---
+import type { GetStaticPaths } from "astro";
+import ClaudeLayout from "@layouts/ClaudeLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import BlogHero from "@components/blog/BlogHero.astro";
+import PostCard from "@components/blog/PostCard.astro";
+import { getAllPosts, getCategories } from "../../../lib/notion";
+
+export const getStaticPaths = (async () => {
+  const posts = await getAllPosts();
+  const cats = await getCategories();
+  return cats.map((c) => ({
+    params: { cat: c.slug },
+    props: {
+      category: c,
+      posts: posts.filter((p) => p.categorySlug === c.slug),
+      allCategories: cats,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { category, posts, allCategories } = Astro.props;
+
+const SITE = "https://www.posicionamiento-web-salamanca.com";
+const canonical = `${SITE}/blog/categoria/${category.slug}`;
+const title = `${category.name} — Blog · Posicionamiento Web Salamanca`;
+const description = `Todos los artículos de la categoría ${category.name}.`;
+---
+
+<ClaudeLayout title={title} description={description} canonical={canonical} includeFaq={false}>
+  <Header />
+  <main>
+    <BlogHero
+      eyebrow="Categoría"
+      title={category.name}
+      accent={category.name}
+      lead={`${posts.length} ${posts.length === 1 ? "artículo" : "artículos"} publicados en ${category.name}.`}
+    />
+
+    <section class="section section-tight">
+      <div class="container">
+        <div class="cat-chips">
+          <a class="chip" href="/blog">Todos</a>
+          {allCategories.map((c) => (
+            <a
+              class={`chip ${c.slug === category.slug ? "is-active" : ""}`}
+              href={`/blog/categoria/${c.slug}`}
+            >
+              {c.name} <span>{c.count}</span>
+            </a>
+          ))}
+        </div>
+
+        <div class="blog-grid">
+          {posts.map((post) => <PostCard post={post} />)}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</ClaudeLayout>
+
+<style>
+  .cat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text-2);
+    transition: all 0.2s;
+  }
+  .chip span {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip.is-active {
+    background: var(--text);
+    color: #F5F1E8;
+    border-color: var(--text);
+  }
+  .chip.is-active span { color: rgba(245, 241, 232, 0.6); }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 880px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+</style>
