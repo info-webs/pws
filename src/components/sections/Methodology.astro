@@ -1,0 +1,160 @@
+---
+const steps = [
+  {
+    n: "01",
+    title: "Descubrimiento",
+    body: "Entendemos tu negocio, tus clientes y tus márgenes. Sin eso, cualquier SEO es lotería.",
+    meta: "Semana 1",
+  },
+  {
+    n: "02",
+    title: "Auditoría y estrategia",
+    body: "Radiografía técnica + análisis de competencia + plan accionable priorizado a 90 días.",
+    meta: "Semanas 2-3",
+  },
+  {
+    n: "03",
+    title: "Ejecución técnica",
+    body: "Arreglamos lo que frena posiciones: rendimiento, estructura, canonicals, schema, migraciones.",
+    meta: "Mes 1-2",
+  },
+  {
+    n: "04",
+    title: "Contenido y autoridad",
+    body: "Contenidos alineados con la intención de búsqueda real + linkbuilding blanco sectorial.",
+    meta: "Mes 2-6",
+  },
+  {
+    n: "05",
+    title: "Medición y escalado",
+    body: "Informes mensuales sin tecnicismos, llamada cada 4 semanas, decisiones tomadas sobre datos.",
+    meta: "Continuo",
+  },
+];
+---
+
+<section class="section" id="metodologia" aria-labelledby="method-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="h-eyebrow">Metodología</span>
+      <h2 id="method-title">Un proceso <em>probado</em>, no magia negra.</h2>
+      <p>18 años haciendo SEO nos han enseñado qué funciona y qué no. Esto es lo que aplicamos en cada proyecto.</p>
+    </div>
+    <div class="method">
+      <div class="method-inner">
+        <div>
+          <img src="/opengraph.jpg" alt="Metodología" style="display:none" />
+          <p style="font-family:var(--ff-display); font-size: clamp(28px, 3vw, 42px); line-height: 1.1; letter-spacing:-0.02em; color: var(--text); text-wrap: balance;">
+            Cinco fases. Transparencia total. Sin humo ni promesas de "ser primero en dos semanas".
+          </p>
+          <p style="color: var(--text-2); font-size: 15.5px; line-height: 1.55; margin-top: 22px; max-width: 340px;">
+            Trabajamos mes a mes, sin permanencia blindada. Si no ves resultados en 6 meses, te devolvemos la última mensualidad.
+          </p>
+        </div>
+        <div class="method-steps">
+          {steps.map((s) => (
+            <div class="step">
+              <div class="step-num">{s.n}</div>
+              <div class="step-body">
+                <h4>{s.title}</h4>
+                <p>{s.body}</p>
+                <div class="step-meta">{s.meta}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .method {
+    background: var(--bg-soft);
+    border-radius: var(--radius-xl);
+    padding: clamp(40px, 5vw, 72px);
+    position: relative;
+    overflow: hidden;
+  }
+  .method::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 85% 20%, color-mix(in oklab, var(--accent-soft) 40%, transparent), transparent);
+    pointer-events: none;
+  }
+  .method-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 60px;
+    align-items: flex-start;
+  }
+  @media (max-width: 900px) { .method-inner { grid-template-columns: 1fr; } }
+  .method-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  .method-steps::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 46px;
+    bottom: 46px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--border-strong), transparent 70%, var(--accent-soft));
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 22px;
+    padding: 20px 0;
+    align-items: start;
+  }
+  .step-num {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    font-family: var(--ff-display);
+    font-size: 22px;
+    color: var(--accent);
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+  .step:hover .step-num {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    transform: scale(1.05);
+  }
+  .step-body h4 {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+    line-height: 1.15;
+  }
+  .step-body p {
+    color: var(--text-2);
+    font-size: 14.5px;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+  .step-meta {
+    margin-top: 10px;
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+  }
+</style>

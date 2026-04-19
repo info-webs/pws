@@ -1,0 +1,60 @@
+:root {
+  --bg: #FAF9F5;
+  --bg-soft: #F5F2EA;
+  --bg-card: #FFFFFF;
+  --surface-warm: #FFF6EE;
+  --border: #E8E4D9;
+  --border-strong: #D8D1C0;
+  --text: #1F1E1C;
+  --text-2: #4A4742;
+  --text-3: #8A867E;
+  --accent: #D97757;
+  --accent-hover: #C9623F;
+  --accent-soft: #F4BFA6;
+  --peach: #FFE4D1;
+  --peach-2: #FFD4B5;
+  --mint: #C9D9C2;
+  --sky: #BFD2DD;
+  --gold: #E8C07A;
+  --success: #3F8C5C;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+
+  --shadow-sm: 0 1px 2px rgba(31, 30, 28, 0.04), 0 1px 1px rgba(31, 30, 28, 0.03);
+  --shadow: 0 4px 14px -4px rgba(31, 30, 28, 0.08), 0 2px 4px rgba(31, 30, 28, 0.04);
+  --shadow-lg: 0 24px 60px -20px rgba(31, 30, 28, 0.18), 0 8px 20px -8px rgba(31, 30, 28, 0.08);
+  --shadow-accent: 0 14px 40px -14px rgba(217, 119, 87, 0.45);
+
+  --ff-display: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
+  --ff-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --ff-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --max-w: 1240px;
+  --gutter: clamp(20px, 4vw, 56px);
+}
+
+:root[data-theme="dark"] {
+  --bg: #17140F;
+  --bg-soft: #1F1B15;
+  --bg-card: #221E17;
+  --surface-warm: #2A231B;
+  --border: #2F2A22;
+  --border-strong: #3D3528;
+  --text: #F5F1E8;
+  --text-2: #C9C2B3;
+  --text-3: #8A8578;
+  --accent: #E88A6B;
+  --accent-hover: #F29876;
+  --accent-soft: #B86B50;
+  --peach: #3A2A20;
+  --peach-2: #4A3224;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+}

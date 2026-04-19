@@ -1,0 +1,122 @@
+---
+const testis = [
+  {
+    feat: true,
+    quote: "En seis meses pasamos de rellenar huecos de agenda a tener lista de espera. Jesús explica el SEO como si fuese de mi familia.",
+    name: "Marta Castaño",
+    role: "Directora · Dental Castaño",
+    avatar: "M",
+  },
+  {
+    feat: false,
+    quote: "Llevamos tres años trabajando juntos. El coste por cliente bajó a la décima parte de lo que nos costaba Google Ads.",
+    name: "Luis Herrero",
+    role: "Socio · Herrero Abogados",
+    avatar: "L",
+  },
+  {
+    feat: false,
+    quote: "Cercanos, rápidos y sin humo. El informe mensual se entiende a la primera y las decisiones se toman con datos.",
+    name: "Ana Vidal",
+    role: "Fisioplus Salamanca",
+    avatar: "A",
+  },
+];
+---
+
+<section class="section section-tight" aria-labelledby="testi-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="h-eyebrow">Lo que dicen</span>
+      <h2 id="testi-title">Los resultados <em>hablan</em>, los clientes también.</h2>
+    </div>
+    <div class="testimonials-grid">
+      {testis.map((t) => (
+        <article class={`testi${t.feat ? " feat" : ""}`}>
+          <p class="testi-quote">{t.quote}</p>
+          <div class="testi-meta">
+            <div class="testi-avatar">{t.avatar}</div>
+            <div>
+              <div class="testi-name">{t.name}</div>
+              <div class="testi-role">{t.role}</div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .testi {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    transition: all 0.4s var(--ease);
+  }
+  .testi:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .testi.feat {
+    background: linear-gradient(155deg, var(--accent) 0%, #C9623F 100%);
+    color: #fff;
+    border-color: transparent;
+  }
+  .testi.feat .testi-quote,
+  .testi.feat .testi-name,
+  .testi.feat .testi-role { color: rgba(255, 255, 255, 0.95); }
+  .testi.feat .testi-role { opacity: 0.8; }
+  .testi-quote {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.012em;
+    color: var(--text);
+    text-wrap: pretty;
+    position: relative;
+  }
+  .testi-quote::before {
+    content: "\201C";
+    font-family: var(--ff-display);
+    font-size: 60px;
+    line-height: 0.4;
+    color: var(--accent);
+    opacity: 0.4;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .testi.feat .testi-quote::before { color: rgba(255, 255, 255, 0.6); }
+  .testi-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .testi.feat .testi-meta { border-top-color: rgba(255, 255, 255, 0.2); }
+  .testi-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--peach);
+    display: grid;
+    place-items: center;
+    font-family: var(--ff-display);
+    font-size: 20px;
+    color: var(--accent-hover);
+    flex-shrink: 0;
+  }
+  .testi.feat .testi-avatar { background: rgba(255, 255, 255, 0.2); color: #fff; }
+  .testi-name { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.2; }
+  .testi-role { font-size: 12px; color: var(--text-3); line-height: 1.3; margin-top: 2px; }
+  @media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; } }
+</style>

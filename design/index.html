@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+  Claude Design reference for posicionamiento-web-salamanca.com
+  Source: https://api.anthropic.com/v1/design/h/7b3Cd6Pk5LyeKtCqsWBsMw
+  This file preserves the structural HTML (nav + hero + logos marquee) and the
+  full stylesheet. The base64 font payloads and the bundler JS from the original
+  export have been removed — the Astro implementation loads Geist / Geist Mono /
+  Instrument Serif from Google Fonts. Sections beyond `#sections-mount` (services,
+  methodology, cases, testimonials, pricing, team, faq, contact, blog, footer,
+  cta-banner) were rendered by the compressed bundler script in the original;
+  they have been reconstructed in src/components/sections/ from the CSS below.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posicionamiento Web Salamanca — Agencia SEO con 18 años de experiencia</title>
+<meta name="description" content="Agencia SEO en Salamanca especializada en posicionamiento web para abogados, clínicas dentales y servicios profesionales. 18 años consiguiendo resultados medibles. Solicita tu propuesta personalizada.">
+<meta name="keywords" content="posicionamiento web Salamanca, agencia SEO Salamanca, consultor SEO Salamanca, SEO local Salamanca, SEO dentistas, SEO abogados">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="Jesús López SEO">
+<link rel="canonical" href="https://posicionamiento-web-salamanca.com/">
+
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://posicionamiento-web-salamanca.com/">
+<meta property="og:title" content="Posicionamiento Web Salamanca — Agencia SEO con 18 años de experiencia">
+<meta property="og:description" content="Hacemos que tu negocio aparezca primero en Google. 18 años de experiencia en SEO para servicios profesionales en Salamanca.">
+<meta property="og:site_name" content="Posicionamiento Web Salamanca">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Posicionamiento Web Salamanca — Agencia SEO">
+<meta name="twitter:description" content="Agencia SEO en Salamanca con 18 años de experiencia. Abogados, clínicas dentales, comercio local.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://posicionamiento-web-salamanca.com/#organization",
+  "name": "Posicionamiento Web Salamanca",
+  "alternateName": "Jesús López SEO",
+  "url": "https://posicionamiento-web-salamanca.com/",
+  "description": "Agencia SEO en Salamanca especializada en posicionamiento web para servicios profesionales con 18 años de experiencia.",
+  "telephone": "+34618015995",
+  "email": "jesus@jesuslopezseo.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Salamanca",
+    "addressRegion": "Castilla y León",
+    "addressCountry": "ES"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Salamanca"},
+    {"@type": "Country", "name": "España"}
+  ],
+  "priceRange": "€€",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "47"
+  },
+  "sameAs": ["https://www.linkedin.com/in/jesuslopezseo/"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tarda en verse resultados el posicionamiento SEO?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Los primeros movimientos se ven en 6-8 semanas. Los resultados sólidos (primeras posiciones, tráfico estable) entre 4 y 7 meses dependiendo de la competencia del sector en Salamanca."}
+    },
+    {
+      "@type": "Question",
+      "name": "¿Trabajáis con negocios fuera de Salamanca?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Sí. Aunque somos expertos en SEO local de Salamanca, trabajamos con clientes en toda España y sectores nicho a nivel nacional."}
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hay permanencia en los servicios SEO?",
+      "acceptedAnswer": {"@type": "Answer", "text": "No. Trabajamos mes a mes. Pedimos un compromiso mínimo informal de 6 meses porque antes no hay tiempo de ver resultados, pero no hay contrato blindado."}
+    }
+  ]
+}
+</script>
+
+<!-- Fonts: Geist, Geist Mono, Instrument Serif (Google Fonts in the Astro port) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+/* ========= TOKENS ========= */
+:root {
+  --bg: #FAF9F5;
+  --bg-soft: #F5F2EA;
+  --bg-card: #FFFFFF;
+  --surface-warm: #FFF6EE;
+  --border: #E8E4D9;
+  --border-strong: #D8D1C0;
+  --text: #1F1E1C;
+  --text-2: #4A4742;
+  --text-3: #8A867E;
+  --accent: #D97757;
+  --accent-hover: #C9623F;
+  --accent-soft: #F4BFA6;
+  --peach: #FFE4D1;
+  --peach-2: #FFD4B5;
+  --mint: #C9D9C2;
+  --sky: #BFD2DD;
+  --gold: #E8C07A;
+  --success: #3F8C5C;
+  --radius-sm: 8px; --radius: 14px; --radius-lg: 22px; --radius-xl: 32px;
+  --shadow-sm: 0 1px 2px rgba(31,30,28,.04), 0 1px 1px rgba(31,30,28,.03);
+  --shadow: 0 4px 14px -4px rgba(31,30,28,.08), 0 2px 4px rgba(31,30,28,.04);
+  --shadow-lg: 0 24px 60px -20px rgba(31,30,28,.18), 0 8px 20px -8px rgba(31,30,28,.08);
+  --shadow-accent: 0 14px 40px -14px rgba(217,119,87,.45);
+  --ff-display: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
+  --ff-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --ff-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --ease: cubic-bezier(.22,1,.36,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --max-w: 1240px;
+  --gutter: clamp(20px, 4vw, 56px);
+}
+:root[data-theme="dark"] {
+  --bg: #17140F; --bg-soft: #1F1B15; --bg-card: #221E17;
+  --surface-warm: #2A231B; --border: #2F2A22; --border-strong: #3D3528;
+  --text: #F5F1E8; --text-2: #C9C2B3; --text-3: #8A8578;
+  --accent: #E88A6B; --accent-hover: #F29876; --accent-soft: #B86B50;
+  --peach: #3A2A20; --peach-2: #4A3224;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
+  --shadow: 0 4px 14px -4px rgba(0,0,0,.4);
+  --shadow-lg: 0 24px 60px -20px rgba(0,0,0,.6);
+}
+</style>
+<!-- Full reset + typography + section styles live in src/styles/global.css in the Astro port. -->
+</head>
+<body>
+<!-- See src/pages/index.astro for the Astro implementation.
+     The original export contained NAV + HERO + LOGOS as static HTML here,
+     plus <div id="sections-mount"></div> populated by a gzipped JS bundle.
+     Everything has been reimplemented as Astro components under
+     src/components/ and src/components/sections/. -->
+</body>
+</html>

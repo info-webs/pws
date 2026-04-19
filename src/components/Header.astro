@@ -1,0 +1,146 @@
+---
+const links = [
+  { href: "#servicios", label: "Servicios" },
+  { href: "#metodologia", label: "Metodología" },
+  { href: "#casos", label: "Casos" },
+  { href: "#precios", label: "Precios" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#blog", label: "Recursos" },
+];
+---
+
+<nav class="nav" id="nav" aria-label="Navegación principal">
+  <a class="nav-brand" href="#top">
+    <span class="nav-logo" aria-hidden="true">p</span>
+    <span>Posicionamiento&nbsp;Web&nbsp;Salamanca</span>
+  </a>
+  <ul class="nav-links">
+    {links.map((l) => (
+      <li><a href={l.href}>{l.label}</a></li>
+    ))}
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+      </svg>
+    </button>
+    <a href="#contacto" class="btn btn-primary btn-sm">
+      Propuesta
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </a>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: calc(100% - 28px);
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 10px 20px;
+    background: color-mix(in oklab, var(--bg) 75%, transparent);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s var(--ease);
+  }
+  .nav.scrolled {
+    box-shadow: var(--shadow);
+    background: color-mix(in oklab, var(--bg) 92%, transparent);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    font-size: 15px;
+  }
+  .nav-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: radial-gradient(circle at 30% 30%, var(--accent-soft), var(--accent));
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-family: var(--ff-display);
+    font-size: 18px;
+    line-height: 1;
+  }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+  }
+  .nav-links a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    color: var(--text-2);
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-links a:hover {
+    color: var(--text);
+    background: var(--bg-soft);
+  }
+  .nav-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    color: var(--text-2);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .theme-toggle:hover {
+    color: var(--text);
+    background: var(--bg-soft);
+  }
+  .theme-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+    .nav { padding: 8px 8px 8px 16px; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const nav = document.getElementById("nav");
+    if (nav) {
+      const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 12);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+    const toggle = document.getElementById("themeToggle");
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        const cur = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+        const next = cur === "dark" ? "light" : "dark";
+        if (next === "dark") document.documentElement.dataset.theme = "dark";
+        else delete document.documentElement.dataset.theme;
+        try { localStorage.setItem("pws-theme", next); } catch (_) {}
+      });
+    }
+  })();
+</script>

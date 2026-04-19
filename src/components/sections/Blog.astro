@@ -1,0 +1,132 @@
+---
+const posts = [
+  {
+    cls: "",
+    cat: "SEO Local",
+    title: "Cómo aparecer primero en Google Maps en Salamanca",
+    desc: "La guía práctica que le damos a cada cliente nuevo cuando trabaja SEO local.",
+    time: "8 min",
+    href: "/blog/google-maps-salamanca",
+  },
+  {
+    cls: "c2",
+    cat: "Técnico",
+    title: "Core Web Vitals 2026: qué mover y qué no tocar",
+    desc: "Qué métricas importan de verdad en 2026 y cuáles son cortinas de humo.",
+    time: "12 min",
+    href: "/blog/core-web-vitals-2026",
+  },
+  {
+    cls: "c3",
+    cat: "Sectorial",
+    title: "SEO para clínicas dentales: las 7 palancas que funcionan",
+    desc: "Después de posicionar +40 clínicas, esto es lo que sí mueve pacientes.",
+    time: "10 min",
+    href: "/blog/seo-clinicas-dentales",
+  },
+];
+---
+
+<section class="section" id="blog" aria-labelledby="blog-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="h-eyebrow">Recursos</span>
+      <h2 id="blog-title">Aprende <em>SEO</em> de verdad, gratis.</h2>
+      <p>El mismo conocimiento que aplicamos a clientes, contado sin tecnicismos. Publicamos cada dos semanas.</p>
+    </div>
+    <div class="blog-grid">
+      {posts.map((p) => (
+        <a class="blog-card" href={p.href}>
+          <div class={`blog-cover ${p.cls}`} aria-hidden="true"></div>
+          <div class="blog-body">
+            <span class="blog-cat">{p.cat}</span>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+            <div class="blog-foot">
+              <span>{p.time} lectura</span>
+              <span class="read">Leer <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 880px) { .blog-grid { grid-template-columns: 1fr; } }
+  .blog-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.4s var(--ease);
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-soft);
+  }
+  .blog-cover {
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, var(--peach), var(--accent-soft));
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-cover.c2 { background: linear-gradient(135deg, var(--mint), var(--sky)); }
+  .blog-cover.c3 { background: linear-gradient(135deg, var(--gold), var(--peach-2)); }
+  .blog-body {
+    padding: 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+  }
+  .blog-cat {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .blog-card h3 {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    text-wrap: balance;
+  }
+  .blog-card p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.5;
+    margin-top: auto;
+  }
+  .blog-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    font-family: var(--ff-mono);
+  }
+  .blog-foot .read {
+    color: var(--accent);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+</style>
