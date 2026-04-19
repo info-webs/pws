@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import Marketing from "assets/icon-1.svg";
+import Strategic from "assets/icon-2.svg";
+import Analysing from "assets/icon-3.svg";
+import Financial from "assets/icon-4.svg";
+import Executive from "assets/icon-5.svg";
+import Speedup from "assets/icon-6.svg";
+
+const features = [
+  {
+    icon: Marketing,
+    title: "Marketing Consultation",
+    description:
+      "We provide the best marketing consultation for your business to grow and reach the right audience. You can trust us for your business to flourish.",
+  },
+  {
+    icon: Financial,
+    title: "Financial Projections",
+    description:
+      "Financial projections are the key to success for any business. We can help you with the best financial projections for your business.",
+  },
+  {
+    icon: Strategic,
+    title: "Strategic Planning",
+    description:
+      "Our strategic planning is the best in the market. We provide the best strategic planning for your business to grow and reach the right audience.",
+  },
+  {
+    icon: Executive,
+    title: "Executive Development",
+    description:
+      "We provide the best executive development for your business to grow and reach the right audience and to grow your business fast.",
+  },
+  {
+    icon: Analysing,
+    title: "Data Analysing",
+    description:
+      "Analyzing data is the key to success for any business. It involves a lot of data and we can help you with the best data analyzing for your business.",
+  },
+  {
+    icon: Speedup,
+    title: "Speedup your work",
+    description:
+      "Your work can be speed up with our solutions. We provide the best solutions for your business to grow and reach the right audience.",
+  },
+];
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+  {
+    features.map((feature) => (
+      <div class="flex flex-wrap sm:flex-nowrap justify-center sm:justify-start gap-4 sm:gap-8">
+        <div>
+          <div class="bg-primary-soft rounded-full h-28 w-28 flex justify-center items-center">
+            <Image src={feature.icon} alt="" />
+          </div>
+        </div>
+        <div class="text-center sm:text-start">
+          <h3 class="text-primary-strong text-2xl font-semibold max-w-20">
+            {feature.title}
+          </h3>
+          <p class="pt-2 text-primary-strong">{feature.description}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>

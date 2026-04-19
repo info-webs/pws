@@ -1,0 +1,48 @@
+---
+import Container from "@components/container.astro";
+import { Image } from "astro:assets";
+import Ridoria from "assets/logo1.png";
+import Alterbone from "assets/logo2.png";
+import Tinygone from "assets/logo3.png";
+import Waverio from "assets/logo4.png";
+import Incanto from "assets/logo5.png";
+
+const clients = [
+  {
+    logo: Ridoria,
+    alt: "Ridoria Logo",
+  },
+  {
+    logo: Alterbone,
+    alt: "Alterbone Logo",
+  },
+  {
+    logo: Tinygone,
+    alt: "Tinygone Logo",
+  },
+  {
+    logo: Waverio,
+    alt: "Waverio Logo",
+  },
+  {
+    logo: Incanto,
+    alt: "Incanto Logo",
+  },
+];
+---
+
+<!--====================== Our Clients ======================-->
+<div class="py-24 border-t">
+  <Container>
+    <div class="flex flex-wrap justify-center items-center gap-10">
+      {
+        clients.map((client) => (
+          <div>
+            <Image src={client.logo} alt={client.alt} class="opacity-50 hover:opacity-100 transition-opacity" />
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</div>
+<!--//End Our Clients -->

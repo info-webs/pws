@@ -1,0 +1,6 @@
+{
+  "editor.unusualLineTerminators": "auto",
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

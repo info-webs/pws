@@ -1,0 +1,53 @@
+---
+import Container from "@components/container.astro";
+import { Image } from "astro:assets";
+import Ellipse from "assets/ellipse.png";
+---
+
+<!--====================== Testimonial ======================-->
+<div class="py-24">
+  <Container>
+    <div class="mx-auto text-center">
+      <Image src={Ellipse} alt="" class="mx-auto" />
+      <h3 class="text-2xl font-bold py-4 mt-4 text-primary-strong">
+        Best tracking software
+      </h3>
+      <p
+        class="text-center text-primary-strong text-xl leading-normal max-w-3xl mx-auto [text-wrap:balance]">
+        Combined with a handful of model sentence structures, to generate Lorem
+        Ipsum which looks discovered the undoubtable source.reasonable generated
+        Ipsum is therefore always.
+      </p>
+      <div class="justify-center flex gap-1 pt-8">
+        {
+          Array.from({ length: 5 }).map(() => (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              width="16"
+              height="16"
+              x="0"
+              y="0"
+              viewBox="0 0 32 32"
+              style="enable-background:new 0 0 512 512"
+              xml:space="preserve"
+              class="">
+              <g>
+                <path
+                  d="m29.911 13.75-6.229 6.072 1.471 8.576a1 1 0 0 1-1.451 1.054L16 25.403l-7.701 4.048a1 1 0 0 1-1.451-1.054l1.471-8.576-6.23-6.071a1 1 0 0 1 .555-1.706l8.609-1.25 3.85-7.802c.337-.683 1.457-.683 1.794 0l3.85 7.802 8.609 1.25a1.002 1.002 0 0 1 .555 1.706z"
+                  fill="#34c192"
+                  opacity="1"
+                  data-original="#000000"
+                  class=""
+                />
+              </g>
+            </svg>
+          ))
+        }
+      </div>
+      <p class="text-primary-strong text-sm mt-2 font-semibold">Martin John</p>
+    </div>
+  </Container>
+</div>
+<!--//End Testimonial -->

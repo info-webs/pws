@@ -1,0 +1,20 @@
+---
+import Footer from "@components/footer.astro";
+import Navbar from "@components/navbar/navbar.astro";
+import RootLayout from "@layouts/RootLayout.astro";
+
+const { title } = Astro.props;
+---
+
+<RootLayout title={title}>
+  <Navbar />
+  <slot />
+  <Footer />
+  <style is:global>
+    /* Improve Page speed */
+    /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
+    img {
+      content-visibility: auto;
+    }
+  </style>
+</RootLayout>

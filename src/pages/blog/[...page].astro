@@ -1,0 +1,99 @@
+---
+import type { Page } from "astro";
+import { getCollection } from "astro:content";
+import { Picture } from "astro:assets";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Pagination from "@components/pagination.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const PAGE_SIZE = 6;
+  const allPosts = await getCollection("blog", ({ data }) => {
+    return !data.draft && data.publishDate < new Date();
+  });
+
+  const allSortedPosts = allPosts.sort(function (a, b) {
+    return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
+  });
+
+  return paginate(allSortedPosts, {
+    pageSize: PAGE_SIZE,
+  });
+}
+
+const { page }: { page: Page } = Astro.props;
+---
+
+<Layout title="Blog">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Our Blog</Fragment>
+      <Fragment slot="desc">
+        We write about building startups and thoughts going on our mind.
+      </Fragment>
+    </Sectionhead>
+    <main class="my-16">
+      <ul class="grid gap-16 md:grid-cols-2 lg:grid-cols-3 mx-auto">
+        <!-- // Manage Blog in ./content/blog  -->
+        {
+          page?.data.map((blogPostEntry, index) => (
+            <li>
+              <a href={`/blog/${blogPostEntry.slug}`} class="group">
+                <div class="grid gap-5 items-center">
+                  <Picture
+                    src={blogPostEntry.data.image}
+                    alt="Thumbnail Image"
+                    sizes="(max-width: 500px) 100vw, 400px"
+                    class="w-full rounded-lg object-cover object-center bg-gray-50"
+                  />
+                  <div>
+                    <div class="flex gap-5 items-center mt-3">
+                      <span class="text-default font-medium text-lg">
+                        {blogPostEntry.data.author}
+                      </span>
+                      <time
+                        class="text-gray-400"
+                        datetime={blogPostEntry.data.publishDate.toISOString()}>
+                        {blogPostEntry.data.publishDate.toLocaleDateString(
+                          "en-US",
+                          { day: "numeric", month: "long", year: "numeric" }
+                        )}
+                      </time>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold leading-snug tracking-tight mt-3 line-clamp-2 group-hover:text-primary">
+                      {blogPostEntry.data.title}
+                    </h2>
+
+                    <p class="text-default-soft mt-2 line-clamp-3">
+                      {blogPostEntry.data.excerpt}
+                    </p>
+                    <div class="mt-6">
+                      <a href={`/blog/${blogPostEntry.slug}`}>
+                        <span class="sr-only">View Article</span>
+                        <svg
+                          width="27"
+                          height="12"
+                          viewBox="0 0 27 12"
+                          class="text-primary"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M26.8215 5.61738L20.6853 0.18973C20.4649 -0.0379381 20.0775 -0.0644783 19.8201 0.130539C19.5627 0.32551 19.5327 0.668155 19.7532 0.895823C19.7738 0.917046 19.7961 0.936869 19.8201 0.955014L24.9071 5.45996H0.613606C0.274741 5.45996 0 5.70297 0 6.00275C0 6.30253 0.274741 6.5455 0.613606 6.5455H24.9071L19.8201 11.045C19.5627 11.24 19.5327 11.5826 19.7532 11.8103C19.9737 12.0379 20.361 12.0645 20.6184 11.8695C20.6424 11.8513 20.6648 11.8315 20.6853 11.8103L26.8216 6.38262C27.0595 6.171 27.0595 5.8291 26.8215 5.61738Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <Pagination url={page.url} />
+    </main>
+  </Container>
+</Layout>

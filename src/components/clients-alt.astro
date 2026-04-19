@@ -1,0 +1,24 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+const logos = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/clients/*.svg"
+);
+---
+
+<div class="flex justify-center flex-wrap gap-5">
+  {
+    Object.keys(logos).map((imagePath) => {
+      return (
+        <div class="bg-white w-44 h-32 px-8 py-7 rounded-xl">
+          <Image
+            src={logos[imagePath]()}
+            alt="logo"
+            class="w-full h-full object-contain"
+          />
+        </div>
+      );
+    })
+  }
+</div>

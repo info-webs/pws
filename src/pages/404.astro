@@ -1,0 +1,35 @@
+---
+import Container from "@components/container.astro";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="404 Not Found">
+  <Container>
+    <!-- <div class="min-h-[calc(100vh-16rem)] flex items-center justify-center">
+      <div class="mt-16 text-center">
+        <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">404</h1>
+        <p class="text-lg mt-4 text-slate-600">Page not found.</p>
+      </div>
+    </div> -->
+    <div class="min-h-[calc(100vh-16rem)] flex items-center justify-center">
+      <div class="max-w-3xl mx-auto my-16 text-center">
+        <h1
+          class="text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-primary-accent to-primary-soft">
+          404
+        </h1>
+        <h2 class="text-6xl font-bold mt-4">Page Not Found</h2>
+        <p class="text-xl mt-4 text-default">
+          This page doesn’t exist or was removed! <br />
+          We suggest you go back to home.
+        </p>
+        <div class="mt-4">
+          <a
+            href="/"
+            class="text-primary uppercase font-medium text-sm hover:underline hover:underline-offset-2">
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Layout>

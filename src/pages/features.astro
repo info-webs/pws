@@ -1,0 +1,83 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import { Image } from "astro:assets";
+import Task from "assets/task.png";
+import Traffic from "assets/traffic.png";
+import Pie from "assets/pie.png";
+import FeaturesCol from "@components/features-col.astro";
+
+const features = [
+  {
+    title: "Better business strategy",
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. All the Lorem Ipsum generators on the Internet tend.",
+    image: Task,
+  },
+  {
+    title: "Better business strategy",
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. All the Lorem Ipsum generators on the Internet tend.",
+    image: Traffic,
+  },
+  {
+    title: "Better business strategy",
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. All the Lorem Ipsum generators on the Internet tend.",
+    image: Pie,
+  },
+];
+---
+
+<Layout title="Features">
+  <!--====================== Features ======================-->
+  <div class="mt-24">
+    <Container>
+      <div>
+        <h2
+          class="text-primary-strong text-center text-3xl md:text-5xl font-bold">
+          Features
+        </h2>
+        <p
+          class="text-center text-primary-strong font-medium text-lg leading-normal max-w-3xl mx-auto pt-8">
+          Cariations of passages of Lorem Ipsum available, but the majority have
+          suffered alteration in some form repeat predefined chunks.
+        </p>
+      </div>
+      {
+        features.map(({ title, description, image }, index) => (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-24 mt-14 items-center">
+            <div class:list={[index % 2 === 0 ? "" : "md:order-1"]}>
+              <h2 class="text-primary-strong text-3xl md:text-5xl font-bold">
+                {title}
+              </h2>
+              <p class="text-primary-strong font-medium text-lg leading-normal max-w-4xl mx-auto pt-10">
+                {description}
+              </p>
+              <div class="mt-14">
+                <a
+                  href="#"
+                  class="bg-primary text-lg font-medium rounded-lg py-5 px-8 text-white transition hover:bg-primary-strong">
+                  Get Started
+                </a>
+              </div>
+            </div>
+            <div class="mx-auto bg-primary-soft py-24 px-10 w-full rounded-xl">
+              <Image src={image} alt="" class="mx-auto" />
+            </div>
+          </div>
+        ))
+      }
+    </Container>
+  </div>
+  <!--//End Features -->
+  <!--====================== Our Solutions ======================-->
+  <div>
+    <Container>
+      <div class="my-24">
+        <FeaturesCol />
+      </div>
+    </Container>
+  </div>
+  <!--//End Our Solutions -->
+</Layout>

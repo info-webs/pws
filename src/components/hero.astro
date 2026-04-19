@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import Container from "@components/container.astro";
+import heroImage from "assets/dashboard.png";
+import isolationMode from "assets/frame.svg";
+---
+
+<div class="bg-primary-soft pt-10 md:pt-24 relative overflow-hidden">
+  <div class="absolute -left-28 bottom-60 hidden md:block">
+    <Image src={isolationMode} alt="" />
+  </div>
+  <div class="absolute -right-28 top-20">
+    <Image src={isolationMode} alt="" />
+  </div>
+  <Container>
+    <div class="max-w-screen-xl mx-auto relative">
+      <h1
+        class="text-4xl md:text-6xl font-bold text-center text-primary-strong max-w-4xl mx-auto">
+        Optimal analytics solutions for your business.
+      </h1>
+      <p
+        class="text-center text-primary-strong text-xl leading-normal max-w-3xl mx-auto py-6">
+        Unlock actionable insights and drive strategic decisions with
+        cutting-edge analytics solutions tailored to your business needs.
+      </p>
+      <div class="mx-auto flex flex-wrap gap-4 text-center justify-center">
+        <a
+          href="/auth/signup"
+          class="bg-primary text-lg w-full sm:w-auto font-medium rounded-lg py-5 px-8 text-white transition hover:bg-primary-strong">
+          Start free trial
+        </a>
+        <a
+          href="#"
+          class="bg-white text-lg w-full sm:w-auto font-medium rounded-lg py-5 px-8 text-primary-strong transition hover:bg-primary hover:text-white">
+          Watch video
+        </a>
+      </div>
+      <div
+        class="flex justify-center max-w-5xl mx-auto mt-16 sm:mt-20 sm:px-10">
+        <Image src={heroImage} alt="" quality="high" />
+      </div>
+    </div>
+  </Container>
+</div>
