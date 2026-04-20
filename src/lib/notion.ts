@@ -7,12 +7,19 @@
 //   NOTION_DS_ID        the UUID of the blog database / data source
 //                       (NOTION_BLOG_DB_ID is also accepted as an alias)
 
-const NOTION_KEY = import.meta.env.NOTION_API_KEY || process.env.NOTION_API_KEY;
+// Use process.env first — import.meta.env only exposes PUBLIC_* vars in Astro SSG build
+const NOTION_KEY =
+  (typeof process !== "undefined" ? process.env?.NOTION_API_KEY : undefined) ||
+  import.meta.env.NOTION_API_KEY ||
+  "";
+
 const NOTION_ID =
+  (typeof process !== "undefined"
+    ? process.env?.NOTION_DS_ID || process.env?.NOTION_BLOG_DB_ID
+    : undefined) ||
   import.meta.env.NOTION_DS_ID ||
-  process.env.NOTION_DS_ID ||
   import.meta.env.NOTION_BLOG_DB_ID ||
-  process.env.NOTION_BLOG_DB_ID;
+  "";
 const NOTION_VERSION = "2022-06-28";
 
 // Soft-fail when env is missing (local dev without secrets, CI, sandbox
@@ -23,6 +30,9 @@ if (NOTION_DISABLED) {
   console.warn(
     "[notion] NOTION_API_KEY / NOTION_DS_ID missing — blog will render empty."
   );
+} else {
+  // eslint-disable-next-line no-console
+  console.log(`[notion] Connected — DS: ${String(NOTION_ID).slice(0, 8)}...`);
 }
 
 // ---------- Types ----------
