@@ -9,7 +9,7 @@
 
 // Use process.env first — import.meta.env only exposes PUBLIC_* vars in Astro SSG build
 const NOTION_KEY =
-  (typeof process !== "undefined" ? process.env?.NOTION_API_KEY : undefined) ||
+  (typeof process !== "undefined" ? (process.env?.NOTION_API_KEY || process.env?.NOTION_TOKEN) : undefined) ||
   import.meta.env.NOTION_API_KEY ||
   "";
 
