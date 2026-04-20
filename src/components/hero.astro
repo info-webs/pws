@@ -1,44 +1,452 @@
 ---
-import { Image } from "astro:assets";
-import Container from "@components/container.astro";
-import heroImage from "assets/dashboard.png";
-import isolationMode from "assets/frame.svg";
+const keywords = [
+  { term: "clínica dental salamanca", pos: "#1", delta: "+14" },
+  { term: "abogado herencias salamanca", pos: "#2", delta: "+22" },
+  { term: "ortodoncia invisible salamanca", pos: "#1", delta: "+31" },
+  { term: "notaría salamanca", pos: "#3", delta: "+9" },
+];
 ---
 
-<div class="bg-primary-soft pt-10 md:pt-24 relative overflow-hidden">
-  <div class="absolute -left-28 bottom-60 hidden md:block">
-    <Image src={isolationMode} alt="" />
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-grid"></div>
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
   </div>
-  <div class="absolute -right-28 top-20">
-    <Image src={isolationMode} alt="" />
-  </div>
-  <Container>
-    <div class="max-w-screen-xl mx-auto relative">
-      <h1
-        class="text-4xl md:text-6xl font-bold text-center text-primary-strong max-w-4xl mx-auto">
-        Optimal analytics solutions for your business.
-      </h1>
-      <p
-        class="text-center text-primary-strong text-xl leading-normal max-w-3xl mx-auto py-6">
-        Unlock actionable insights and drive strategic decisions with
-        cutting-edge analytics solutions tailored to your business needs.
-      </p>
-      <div class="mx-auto flex flex-wrap gap-4 text-center justify-center">
-        <a
-          href="/auth/signup"
-          class="bg-primary text-lg w-full sm:w-auto font-medium rounded-lg py-5 px-8 text-white transition hover:bg-primary-strong">
-          Start free trial
-        </a>
-        <a
-          href="#"
-          class="bg-white text-lg w-full sm:w-auto font-medium rounded-lg py-5 px-8 text-primary-strong transition hover:bg-primary hover:text-white">
-          Watch video
-        </a>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="hero-badge">
+        <span class="hero-badge-pill">Salamanca</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Aceptando 3 proyectos nuevos este trimestre</span>
       </div>
-      <div
-        class="flex justify-center max-w-5xl mx-auto mt-16 sm:mt-20 sm:px-10">
-        <Image src={heroImage} alt="" quality="high" />
+      <h1 id="hero-title">
+        Posicionamiento <span class="accent">web</span> que convierte <em>búsquedas</em> en clientes.
+      </h1>
+      <p class="lead">
+        Agencia SEO en Salamanca con 18 años de experiencia ayudando a abogados, clínicas
+        dentales y servicios profesionales a aparecer primeros en Google y recibir llamadas
+        cada semana.
+      </p>
+      <div class="hero-cta">
+        <a href="#contacto" class="btn btn-primary">
+          Solicitar propuesta
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="#casos" class="btn btn-ghost">Ver casos reales</a>
+      </div>
+      <div class="hero-trust">
+        <div>
+          <span class="hero-trust-num">18<sup>años</sup></span>
+          <div class="hero-trust-label">haciendo SEO en Salamanca</div>
+        </div>
+        <div>
+          <span class="hero-trust-num">+340</span>
+          <div class="hero-trust-label">proyectos posicionados</div>
+        </div>
+        <div>
+          <span class="hero-trust-num">5.0<sup>★</sup></span>
+          <div class="hero-trust-label">valoración media clientes</div>
+        </div>
       </div>
     </div>
-  </Container>
-</div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hv-card hv-main">
+        <div class="hv-main-head">
+          <div class="hv-dots"><span></span><span></span><span></span></div>
+          <div class="hv-search">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3-3"></path></svg>
+            clinica dental salamanca
+          </div>
+        </div>
+        <div class="hv-title">Keywords posicionadas</div>
+        <ul class="hv-kw-list">
+          {keywords.map((k) => (
+            <li class="hv-kw">
+              <span class="kw-txt">{k.term}</span>
+              <span class="kw-pos">{k.pos}</span>
+              <span class="kw-delta">
+                <svg viewBox="0 0 10 10" fill="currentColor"><polygon points="5,1 9,7 1,7"></polygon></svg>
+                {k.delta}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <div class="hv-chart">
+          <div class="hv-chart-head">
+            <div class="hv-chart-title">Tráfico orgánico · 6m</div>
+            <div class="hv-chart-val">12,840<span class="delta">+218%</span></div>
+          </div>
+          <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGrad" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#D97757" stop-opacity="0.35"></stop>
+                <stop offset="100%" stop-color="#D97757" stop-opacity="0"></stop>
+              </linearGradient>
+            </defs>
+            <path d="M0,85 L30,82 L60,78 L90,70 L120,65 L150,58 L180,45 L210,38 L240,25 L270,18 L300,10 L300,100 L0,100 Z" fill="url(#chartGrad)"></path>
+            <path d="M0,85 L30,82 L60,78 L90,70 L120,65 L150,58 L180,45 L210,38 L240,25 L270,18 L300,10" fill="none" stroke="#D97757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="300" cy="10" r="4" fill="#D97757"></circle>
+            <circle cx="300" cy="10" r="8" fill="#D97757" opacity="0.25">
+              <animate attributeName="r" values="4;12;4" dur="2s" repeatCount="indefinite"></animate>
+              <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite"></animate>
+            </circle>
+          </svg>
+        </div>
+      </div>
+
+      <div class="hv-card hv-float hv-float-1">
+        <div class="hv-float-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <div>
+          <div class="hv-float-lbl">Conversión</div>
+          <div class="hv-float-val">+184<sup>%</sup></div>
+        </div>
+      </div>
+
+      <div class="hv-card hv-float hv-float-2">
+        <div class="hv-float-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div>
+          <div class="hv-float-lbl">Google Maps</div>
+          <div class="hv-float-val">Top 3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: 130px;
+    padding-bottom: clamp(80px, 9vw, 120px);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .hero-blob { position: absolute; border-radius: 50%; filter: blur(80px); }
+  .hero-blob.b1 {
+    width: 520px; height: 520px;
+    top: -120px; right: -80px;
+    background: radial-gradient(circle, var(--peach) 0%, transparent 70%);
+    opacity: 0.7;
+    animation: float 18s ease-in-out infinite;
+  }
+  .hero-blob.b2 {
+    width: 420px; height: 420px;
+    top: 180px; left: -120px;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    opacity: 0.35;
+    animation: float 22s ease-in-out infinite reverse;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--text) 6%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--text) 6%, transparent) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+    opacity: 0.6;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -40px) scale(1.08); }
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  @media (max-width: 980px) { .hero-inner { grid-template-columns: 1fr; } }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px 6px 8px;
+    border: 1px solid var(--border);
+    background: color-mix(in oklab, var(--bg-card) 80%, transparent);
+    backdrop-filter: blur(10px);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-sm);
+  }
+  .hero-badge-pill {
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: clamp(44px, 6.8vw, 92px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
+    text-wrap: balance;
+  }
+  .hero h1 .accent {
+    font-style: italic;
+    color: var(--accent);
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+  .hero h1 .accent::after {
+    content: "";
+    position: absolute;
+    bottom: 0.04em; left: -2%;
+    width: 104%; height: 0.22em;
+    background: var(--accent-soft);
+    z-index: -1;
+    opacity: 0.5;
+    border-radius: 20px;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: underline 1.2s var(--ease-out) 0.8s forwards;
+  }
+  @keyframes underline {
+    to { transform: scaleX(1); }
+  }
+  .hero p.lead {
+    font-size: clamp(16px, 1.3vw, 19px);
+    color: var(--text-2);
+    max-width: 520px;
+    line-height: 1.55;
+    text-wrap: pretty;
+    margin-bottom: 36px;
+  }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-top: 44px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .hero-trust-num {
+    font-family: var(--ff-display);
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    display: block;
+  }
+  .hero-trust-num sup {
+    font-size: 0.5em;
+    color: var(--accent);
+    top: -0.8em;
+    font-family: var(--ff-body);
+    font-weight: 500;
+  }
+  .hero-trust-label {
+    font-size: 12.5px;
+    color: var(--text-3);
+    line-height: 1.25;
+    margin-top: 4px;
+    max-width: 130px;
+  }
+
+  /* Visual dashboard */
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 1 / 1.1;
+    max-width: 520px;
+    margin-left: auto;
+    width: 100%;
+  }
+  .hv-card {
+    position: absolute;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  .hv-main {
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    overflow: hidden;
+  }
+  .hv-main-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  .hv-dots { display: flex; gap: 6px; }
+  .hv-dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--border-strong); }
+  .hv-dots span:first-child { background: var(--accent-soft); }
+  .hv-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-3);
+    background: var(--bg-soft);
+    padding: 6px 12px;
+    border-radius: 999px;
+    max-width: 220px;
+  }
+  .hv-title {
+    font-family: var(--ff-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 12px;
+  }
+  .hv-kw-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .hv-kw {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 13px;
+    opacity: 0;
+    animation: slideIn 0.6s var(--ease-out) forwards;
+  }
+  .hv-kw:nth-child(1) { animation-delay: 0.3s; }
+  .hv-kw:nth-child(2) { animation-delay: 0.5s; }
+  .hv-kw:nth-child(3) { animation-delay: 0.7s; }
+  .hv-kw:nth-child(4) { animation-delay: 0.9s; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .hv-kw .kw-txt { font-weight: 500; color: var(--text); font-size: 13.5px; }
+  .hv-kw .kw-pos {
+    font-family: var(--ff-mono);
+    font-weight: 500;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: var(--peach);
+    color: var(--accent-hover);
+  }
+  .hv-kw .kw-delta {
+    font-family: var(--ff-mono);
+    font-size: 11.5px;
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .hv-kw .kw-delta svg { width: 10px; height: 10px; }
+
+  .hv-chart {
+    flex: 1;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    position: relative;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+  }
+  .hv-chart-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .hv-chart-title {
+    font-size: 11px;
+    color: var(--text-3);
+    font-family: var(--ff-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .hv-chart-val {
+    font-family: var(--ff-display);
+    font-size: 22px;
+    color: var(--text);
+  }
+  .hv-chart-val .delta {
+    color: var(--success);
+    font-size: 12px;
+    font-family: var(--ff-mono);
+    margin-left: 6px;
+  }
+  .hv-chart svg { width: 100%; flex: 1; }
+
+  .hv-float {
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hv-float-1 { top: -22px; right: -30px; animation: bob 6s ease-in-out infinite; }
+  .hv-float-2 { bottom: 40px; left: -40px; animation: bob 7s ease-in-out infinite 1s; }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .hv-float-ic {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: var(--peach);
+    color: var(--accent-hover);
+  }
+  .hv-float-ic svg { width: 18px; height: 18px; }
+  .hv-float-lbl {
+    font-size: 11px;
+    color: var(--text-3);
+    line-height: 1;
+    margin-bottom: 4px;
+    font-family: var(--ff-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .hv-float-val {
+    font-family: var(--ff-display);
+    font-size: 22px;
+    line-height: 1;
+    color: var(--text);
+  }
+  .hv-float-val sup {
+    font-size: 0.5em;
+    color: var(--accent);
+    top: -0.7em;
+    font-family: var(--ff-body);
+    font-weight: 500;
+  }
+
+  @media (max-width: 980px) {
+    .hero-visual { max-width: 460px; margin: 20px auto 0; }
+    .hv-float-1 { right: -10px; }
+    .hv-float-2 { left: -10px; }
+  }
+  @media (max-width: 500px) {
+    .hv-float-1, .hv-float-2 { display: none; }
+  }
+</style>
