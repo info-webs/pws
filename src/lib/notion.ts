@@ -24,6 +24,15 @@ const NOTION_VERSION = "2022-06-28";
 
 // Soft-fail when env is missing (local dev without secrets, CI, sandbox
 // builds): emit a warning and render an empty blog rather than crashing.
+// Debug: log what env vars are visible at build time
+if (typeof process !== "undefined") {
+  const keys = Object.keys(process.env).filter(k => k.startsWith("NOTION") || k.startsWith("PUBLIC_"));
+  // eslint-disable-next-line no-console
+  console.log(`[notion-debug] process.env NOTION* keys: ${keys.join(", ") || "(none)"}`);
+  // eslint-disable-next-line no-console
+  console.log(`[notion-debug] NOTION_API_KEY set: ${!!process.env.NOTION_API_KEY}, NOTION_DS_ID set: ${!!process.env.NOTION_DS_ID}`);
+}
+
 const NOTION_DISABLED = !NOTION_KEY || !NOTION_ID;
 if (NOTION_DISABLED) {
   // eslint-disable-next-line no-console
