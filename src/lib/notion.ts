@@ -13,13 +13,18 @@ const NOTION_KEY =
   import.meta.env.NOTION_API_KEY ||
   "";
 
+// NOTION_DB_ID should be the Notion DATABASE UUID (974ec63c...),
+// not the collection/data-source UUID. Both NOTION_BLOG_DB_ID and NOTION_DS_ID
+// are accepted but we hardcode the known-good DB ID as final fallback.
 const NOTION_ID =
   (typeof process !== "undefined"
-    ? process.env?.NOTION_DS_ID || process.env?.NOTION_BLOG_DB_ID
+    ? process.env?.NOTION_DB_ID ||
+      process.env?.NOTION_BLOG_DB_ID ||
+      process.env?.NOTION_DS_ID
     : undefined) ||
-  import.meta.env.NOTION_DS_ID ||
+  import.meta.env.NOTION_DB_ID ||
   import.meta.env.NOTION_BLOG_DB_ID ||
-  "";
+  "974ec63c-9fa3-4f7f-830c-1628f580d190";
 const NOTION_VERSION = "2022-06-28";
 
 // Soft-fail when env is missing (local dev without secrets, CI, sandbox
@@ -105,20 +110,10 @@ async function notion<T = any>(path: string, body?: unknown, method = "POST"): P
 
 async function resolveParent() {
   if (cachedParent) return cachedParent;
-  try {
-    await notion(`/databases/${NOTION_ID}/query`, { page_size: 1 });
-    cachedParent = {
-      queryPath: `/databases/${NOTION_ID}/query`,
-      parent: { database_id: NOTION_ID! },
-    };
-    return cachedParent;
-  } catch (e: any) {
-    if (e.status !== 404 && e.status !== 400) throw e;
-  }
-  await notion(`/data_sources/${NOTION_ID}/query`, { page_size: 1 });
+  // Always use the standard Notion databases API endpoint
   cachedParent = {
-    queryPath: `/data_sources/${NOTION_ID}/query`,
-    parent: { type: "data_source_id", data_source_id: NOTION_ID! },
+    queryPath: `/databases/${NOTION_ID}/query`,
+    parent: { database_id: NOTION_ID! },
   };
   return cachedParent;
 }
